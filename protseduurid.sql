@@ -84,3 +84,24 @@ END;
 EXEC otsingUudiseTeema 'w';
 
 --XAMPP/localhost
+
+Create table uudised(
+uudisID int PRIMARY KEY AUTO_INCREMENT,
+uudiseTeema varchar(50),
+kuupaev date,
+autor varchar(25),
+kirjeldus text
+)
+
+  --
+CREATE PROCEDURE `lisaUudis`(IN `uusTeema` VARCHAR(50), IN `paev` DATE, IN `autor` VARCHAR(25), IN `kirjeldus` TEXT) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN
+
+INSERT INTO uudised(
+uudiseTeema, kuupaev, autor, kirjeldus)
+VALUES(
+uusTeema, paev, autor, kirjeldus);
+Select * from uudised;
+
+END;
+
+CALL lisauudis ('windows 11', '2025-02-06', 'õpetaja Pant', 'w11 ei tööta multimeedia klassis');
